@@ -55,6 +55,7 @@ class particle{
         float heading = rays.get(rays.size()/2 -1).dir.heading();
         float a = r.dir.heading() - heading;
         dists.add(record * cos(a));
+        //dists.add(record);
         colors.add(col);
       } // End if
     } // End for

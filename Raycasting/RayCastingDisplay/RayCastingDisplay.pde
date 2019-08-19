@@ -30,8 +30,12 @@ void setup(){
 //  Description: draw loop                                                      //
 //////////////////////////////////////////////////////////////////////////////////
 void draw(){
-  background(0);                                                                // Sets the background to black (overrights everything drawn in the last frame)
-
+  background(51);                                                                // Sets the background to black (overrights everything drawn in the last frame)
+  //rectMode(CORNER);
+  //fill(42, 82, 190);
+  //rect(width/2,0,width,height/2);
+  //fill(255,69,0);
+  //rect(width/2,height/2,width,height);
   pt.update(mouseX,mouseY);                                                     // updates particle position
   pt.look(walls);                                                               // looks at all the walls
   pt.show();                                                                    // shows particles
@@ -83,7 +87,7 @@ void draw3d(){
     //fill(b);
     fill(colors.get(i));
     rectMode(CENTER);
-    rect((i * (drawWidth + 1)) + drawWidth/2, height/2, drawWidth + 2, (h/dists.get(i))*200);
+    rect((i * (drawWidth + 1)) + drawWidth/2, height/2, drawWidth + 2, (h/dists.get(i))*150);
   }
   popMatrix();
 }
