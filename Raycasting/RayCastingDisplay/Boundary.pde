@@ -1,11 +1,11 @@
-class wall{
+class Wall{
   PVector a,b;
   color col;
 //////////////////////////////////////////////////////////////////////////////////
 //  Method:      wall(float, float, float, float)                               //
 //  Description: Constructor for wall object                                    //
 //////////////////////////////////////////////////////////////////////////////////
-  wall(float x1, float y1, float x2, float y2){
+  Wall(float x1, float y1, float x2, float y2){
     a = new PVector(x1,y1);                                                     // Set position of corner 1
     b = new PVector(x2,y2);                                                     // Set position of corner 2
     col = color(random(256), random(256),random(256));
