@@ -2,29 +2,38 @@ class Taskbar extends GUIObj {
   private ArrayList<Button> tasks;
   private PVector pos;
   private PVector dim;
-
+  private WidthMode wm = WidthMode.STANDARD;
 
   Taskbar(float x, float y, float w, float h, String[] buttons) {
     pos = new PVector(x, y);
     dim = new PVector(w, h);
     tasks = new ArrayList<Button>();
-    float wid = w / buttons.length;
-
+    float totalWid = 0;
+    float wid = 0;
     for (int i = 0; i < buttons.length; i++) {
-      tasks.add(new Button(x+i*wid, y, wid, h, buttons[i])
-        .setOnClick(new Runnable() {
+      if (wm == WidthMode.FIXED) {
+        wid = w / buttons.length;
+      } else {
+        wid = textWidth(buttons[i])+10;
+      }
+
+      Button b = new Button(x+totalWid, y, wid, h, buttons[i]);
+      b.setOnClick(new Runnable() {
         @Override
           public void run() {
           fill(255);
-          rect(x, y+h, wid, h);
+          rect(b.getPosX(), b.getPosY()+b.getDimY(), b.getDimX(), b.getDimY());
         }
       }
-      ));
+      );
+      tasks.add(b);
+      totalWid += wid;
     }
   }
 
 
   void display() {
+    fill(255);
     rect(pos.x, pos.y, dim.x, dim.y);
     for (Button b : tasks) {
       b.display();
