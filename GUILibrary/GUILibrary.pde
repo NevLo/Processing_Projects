@@ -1,41 +1,20 @@
-
+Taskbar t;
 Button b;
-Button b2;
-Button b3;
-
 color back;
 void setup() {
   size(400, 400);
-  b = new Button(160, 190, 80, 20, "Hello!");
-  b.setOnClick(new Runnable() {
+  t = new Taskbar(0,0,width,20,new String[]{"File","Edit","Sketch","Tools","Help"});
+  b = new Button(width/2, height/2, 100, 20, "test");
+  b.setButtonColor(color(255,0,0));
+  b.setOnClick(new Runnable(){
     @Override
-      public void run() {
-      println("hello!");
+    public void run(){
+     b.setButtonColor(color(random(0,255),random(0,255),random(0,255)));
     }
-  }
-  );
-  b2 = new Button(160,225,80,20, "Hello 2!");
-  b2.setOnClick(new Runnable() {
-    @Override
-      public void run() {
-      println("hello world!!!");
-    }
-  }
-  );
-  b3 = new Button(160,260,80,20, "change color!");
-  b3.setOnClick(new Runnable() {
-    @Override
-      public void run() {
-      if(back == color(100,100,100)){
-        back = color(0,0,0);
-      }
-      else back = color(100,100,100);
-    }
-  }
-  );
+  });
 }
 
-void mousePressed(){
+void mousePressed() {
   //print("inMousePressed");
   ButtonListener.get().check(mouseX, mouseY);
 }
@@ -43,7 +22,6 @@ void mousePressed(){
 
 void draw() {
   background(back);
+  t.display();
   b.display();
-  b2.display();
-  b3.display();
 }
