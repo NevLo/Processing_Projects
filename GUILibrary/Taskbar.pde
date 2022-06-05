@@ -1,7 +1,10 @@
-class Taskbar extends GUIObj {
+/* THIS NEEDS A BIG REWRITE IN ORDER TO INCORPORATE TASKS INSTEAD OF SECONDARIES.
+ *
+ */
+
+public class Taskbar extends GUIObj {
   private ArrayList<Button> tasks;
-  private PVector pos;
-  private PVector dim;
+  private ArrayList<Button> secondary;
   private WidthMode wm = WidthMode.STANDARD;
 
   Taskbar(float x, float y, float w, float h, String[] buttons) {
@@ -22,15 +25,18 @@ class Taskbar extends GUIObj {
         @Override
           public void run() {
           fill(255);
-          rect(b.getPosX(), b.getPosY()+b.getDimY(), b.getDimX(), b.getDimY());
+          rect(b.getPos().x, b.getPosY()+b.getDimY(), b.getDimX(), b.getDimY());
         }
       }
       );
       tasks.add(b);
       totalWid += wid;
+      
     }
+    GUIListener.get().register(this);
+    secondary = new ArrayList<Button>();
   }
-
+  
 
   void display() {
     fill(255);
@@ -39,4 +45,30 @@ class Taskbar extends GUIObj {
       b.display();
     }
   }
+  
+  ArrayList<Button> getButtons(){
+   return tasks; 
+  }
+  void execute(){
+   return; 
+  }
+  
+  
+  /*
+  * probably going to delete this when tasks are added.
+ 
+  public void addSecondaryToTaskbar(String bta, String buttonName, Runnable r) {
+    for (Button b : tasks) {
+      if (b.getText().equalsIgnoreCase(bta)) {
+      }
+    }
+  }
+  */
+  
+  /*
+  * for some reason this doesnt like being static, but it shouldnt be affected. is it some processing weirdness?
+  public static Taskbar createObjectFromJSON(String filePath) {
+    return null;
+  }
+  */
 }

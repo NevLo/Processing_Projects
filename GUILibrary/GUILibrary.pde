@@ -11,11 +11,12 @@ void setup() {
 
 void mousePressed() {
   //print("inMousePressed");
-  ButtonListener.get().check(mouseX, mouseY);
+  GUIListener.get().check(mouseX, mouseY);
 }
 
 
 void draw() {
+  GUIListener.get().checkHover(mouseX, mouseY);
   background(back);
   t.display();
 
