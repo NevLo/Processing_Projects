@@ -13,7 +13,7 @@ public abstract class GUIObj {
   protected color strokeColor;
   protected int strokeWeight;
   protected boolean isVisible;
-
+  protected boolean isHovered;
 
 
   public float getPosX() {
@@ -36,9 +36,9 @@ public abstract class GUIObj {
     return dim;
   }
   /**
-   * Returns whether a point is within the bounding box of the Button
+   * Returns whether a point is within the bounding box of the object
    * This function only works with Tasks, Buttons, Radio Buttons, Checkboxes.
-   * This will not work with Sliders, 
+   * This will not work with Sliders,
    * <p>
    * @param x : The X coordinate to be checked
    * @param y : The Y coordinate to be checked
@@ -54,4 +54,11 @@ public abstract class GUIObj {
     return objColor;
   }
   public abstract void execute();
+
+  public void setVisibility(boolean v) {
+    isVisible = v;
+  }
+  public void setHoverStatus(boolean h) {
+    isHovered = h; 
+  }
 }

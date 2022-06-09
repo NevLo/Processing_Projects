@@ -20,12 +20,30 @@ static class GUIListener {
     }
   }
   void checkHover(float x, float y) {
+
     for (GUIObj g : bts) {
       if (g instanceof Taskbar) {
         Taskbar temp = (Taskbar)g;
-        for(Button b : temp.getButtons()){
-          if(b.isWithin(x,y)){
-            print(b.getText()); 
+        for (Button b : temp.getButtons()) {
+          if (b.isWithin(x, y) && b.isVisible) {
+            b.setHoverStatus(true);
+            b.executeHover();
+          } else {
+            if (b.isHovered) {
+              b.setHoverStatus(false);
+              b.setButtonColor(255);
+            }
+          }
+        }
+      } else if (g instanceof Button) {
+        Button temp = (Button)g;
+        if (temp.isWithin(x, y) && temp.isVisible) {
+          temp.setHoverStatus(true);
+          temp.executeHover();
+        } else {
+          if (temp.isHovered) {
+            temp.setHoverStatus(false);
+            temp.setButtonColor(255);
           }
         }
       }

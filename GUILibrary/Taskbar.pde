@@ -29,6 +29,15 @@ public class Taskbar extends GUIObj {
         }
       }
       );
+      b.setOnHover(new Runnable(){
+        @Override
+        public void run(){
+         b.setButtonColor(200);
+         fill(255);
+         rect(b.getPos().x, b.getPos().y + b.getDim().y, b.getDim().x, b.getDim().y);
+        }
+        
+      });
       tasks.add(b);
       totalWid += wid;
       
@@ -52,6 +61,7 @@ public class Taskbar extends GUIObj {
   void execute(){
    return; 
   }
+
   
   
   /*

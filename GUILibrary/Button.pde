@@ -1,8 +1,8 @@
 class Button extends GUIObj {
 
   private String text;
-  private boolean isVisible;
   private Runnable r;
+  private Runnable h;
 
   public Button(float x, float y, float w, float h, String text) {
     pos = new PVector(x, y);
@@ -14,7 +14,13 @@ class Button extends GUIObj {
     r = new Runnable() {
       @Override
         public void run() {
-        println("[WARN] Button-" + text + " not initialized with executable!");
+        println("[WARN] Button-" + text + " not initialized with click executable!");
+      }
+    };
+    this.h = new Runnable() {
+      @Override
+        public void run() {
+        println("[WARN] Button-" + text + " not initialized with hover executable!");
       }
     };
   }
@@ -50,11 +56,15 @@ class Button extends GUIObj {
    * button.setOnClick(run);
    *
    * @param run : Instance of a runnable piece of code that the button will activate.
-   * 
+   *
    */
   void setOnClick(Runnable run) {
     this.r = run;
   }
+  void setOnHover(Runnable hov) {
+    this.h = hov; 
+  }
+  
   /**
    * Sets the background color of the button to be the specified color
    * @param col : A color.
@@ -69,9 +79,11 @@ class Button extends GUIObj {
   void execute() {
     r.run();
   }
-
-  String getText(){
-    return text; 
+  void executeHover() {
+    h.run();
   }
 
+  String getText() {
+    return text;
+  }
 }
